@@ -1,0 +1,31 @@
+name: click分享link
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/35 * * * *'
+
+jobs:
+  run-share-link:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 安装浏览器
+        run: npx playwright install --with-deps chromium
+
+      - name: 执行自动打开
+        env:
+          SHARE_LINK: ${{ vars.SHARE_LINK || secrets.SHARE_LINK }}
+        run: npm start

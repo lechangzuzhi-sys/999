@@ -1,0 +1,12 @@
+{
+  "name": "momo-share-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "自动打开分享链接的 GitHub Actions 项目",
+  "scripts": {
+    "start": "node clickShareLink.js"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
